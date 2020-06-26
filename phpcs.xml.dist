@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ruleset name=":package"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+    <description>The coding standard for the monolog-http bundle</description>
+
+    <arg value="p" />
+    <arg name="colors" />
+    <arg name="extensions" value="php" />
+    <arg name="cache" value=".phpcs-cache" />
+
+    <config name="ignore_warnings_on_exit" value="1" />
+
+    <rule ref="PSR12" />
+
+    <rule ref="Generic.PHP.Syntax" phpcs-only="true" />
+
+    <!-- Forbid inline HTML in PHP code -->
+    <rule ref="Generic.Files.InlineHTML" />
+
+    <!-- Forbid deprecated functions -->
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+
+    <!-- Forbid useless inline string concatenation -->
+    <rule ref="Generic.Strings.UnnecessaryStringConcat">
+        <type>error</type>
+        <!-- But multiline is useful for readability -->
+        <properties>
+            <property name="allowMultiline" value="true" />
+        </properties>
+    </rule>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120" />
+            <property name="absoluteLineLimit" value="150" />
+        </properties>
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+</ruleset>
